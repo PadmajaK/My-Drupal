@@ -1,0 +1,6 @@
+name = mymodule
+description = simple custom drupal module
+core = 7.x
+php = 5.3
+dependencies[] = views
+dependencies[] = panels
