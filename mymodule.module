@@ -2,7 +2,7 @@
 /**
  * Implements hook_views_api().
  */
-function my_module_views_api() {
+function mymodule_views_api() {
   return array(
     'api' => 3, 
     'path' => drupal_get_path('module', 'mymodule'), 
