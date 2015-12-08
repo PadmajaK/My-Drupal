@@ -1,0 +1,79 @@
+<?php
+/**
+ * Implements hook_views_api().
+ */
+function my_module_views_api() {
+  return array(
+    'api' => 3, 
+    'path' => drupal_get_path('module', 'mymodule'), 
+  );
+}
+
+/**
+ * Implements hook_views_default_views().
+ */
+
+function mymodule_views_default_views() {
+  // create a new view
+  $view = niews_new_view;
+  //define the view
+  $view->name = 'custompage';
+  $view->description = 'View to display contents of page content type';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Custom page';
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+  /* Display: Defaults */
+  $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('fields', array(
+  'title' => array(
+    'label' => 'Welcome to Drupal',
+    'alter' => array(
+      'alter_text' => 0,
+      'text' => '',
+      'make_link' => 0,
+      'path' => '',
+      'alt' => '',
+      'prefix' => '',
+      'suffix' => '',
+      'help' => '',
+      'trim' => 0,
+      'max_length' => '',
+      'word_boundary' => 1,
+      'html' => 0,
+    ),
+    'link_to_node' => 1,
+    'exclude' => 0,
+    'id' => 'title',
+    'table' => 'node',
+    'field' => 'title',
+    'relationship' => 'none',
+  )
+));
+$handler->override_option('filters', array(
+  'status' => array(
+    'operator' => '=',
+    'value' => '1',
+    'group' => '0',
+    'exposed' => FALSE,
+    'expose' => array(
+      'operator' => FALSE,
+      'label' => '',
+    ),
+    'id' => 'status',
+    'table' => 'node',
+    'field' => 'status',
+    'relationship' => 'none',
+  )
+));
+$handler->override_option('access', array(
+  'type' => 'none',
+));
+$handler->override_option('cache', array(
+  'type' => 'none',
+));
+// output the view 
+print $view->execute_display('default', array());
+}
+?>
