@@ -15,7 +15,7 @@ function my_module_views_api() {
 
 function mymodule_views_default_views() {
   // create a new view
-  $view = niews_new_view;
+  $view = views_new_view;
   //define the view
   $view->name = 'custompage';
   $view->description = 'View to display contents of page content type';
